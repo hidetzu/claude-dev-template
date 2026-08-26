@@ -64,6 +64,8 @@ CLAUDE.md                        skeleton. ⚠ every FILL IN is a claim only the
     loop-controller/             one issue, one owner approval, ⚠ merge only on fully green CI
     change-review/               is the change inside scope and inside the rules
   hooks/                         ask-slack (AskUserQuestion -> Slack -> the answer back), telemetry
+  tools/docs-check.mjs           holds the documents to what they say about themselves.
+                                 ⚠ --list names the cases, --only= runs one
   tools/telemetry-eval.mjs       reads the telemetry. ⚠ observation only, it scores nothing
   settings.json                  wires the hooks up
 docs/
@@ -73,8 +75,24 @@ docs/
 
 ⚠ **`.claude/telemetry/` never enters git** — see `.gitignore` and `.claude/telemetry-dir.mjs`.
 ⚠ **The `.gitignore` line and the code that builds the path are two copies of one string**, and
-⚠ **only a static check can hold them together.** ⚠ **That check is not here.** ⚠ **Until a
-project writes it, this is a promise and not an enforced invariant** — do not describe it as enforced.
+⚠ **only a static check can hold them together.** That check is
+[`.claude/tools/docs-check.mjs`](.claude/tools/docs-check.mjs), case `telemetry-ignore-line`;
+⚠ **it reads the name out of the code and requires `.gitignore` to carry that exact line**,
+⚠ **so renaming the directory in one place alone fails.**
+
+```
+node .claude/tools/docs-check.mjs            every case
+node .claude/tools/docs-check.mjs --list     name them without running (⚠ loads nothing)
+node .claude/tools/docs-check.mjs --only=links
+```
+
+⚠ **It announces its own count, and the count is never written down** (`rules/evidence.md`).
+The other two cases hold documents to rules that would otherwise be promises: every relative
+link in the markdown resolves, and ⚠ **no count is written into `docs/SPEC.md`.**
+
+⚠ **This is not this project's verification.** ⚠ **That is `.claude/skills/verify/SKILL.md`, and
+every project still writes its own** (§3). ⚠ **These three cases assert only what this template
+can claim about any copy of itself.**
 
 ---
 
