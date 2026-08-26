@@ -50,6 +50,7 @@ commands did not.** ⚠ **So the contract is here and the commands are not** (§
 
 ```
 CLAUDE.md                        skeleton. ⚠ every FILL IN is a claim only the project can make
+.envrc.example                   the Slack credentials ask-slack needs. ⚠ copy to .envrc, never fill this one in
 .claude/
   rules/
     README.md                    the index, and ⚠ constraint vs. learned pitfall
@@ -111,6 +112,8 @@ project writes it, this is a promise and not an enforced invariant** — do not 
 
 ⚠ **The hooks need `node`.** `ask-slack.mjs` reads its Slack credentials from the environment and
 ⚠ **falls back to asking in the terminal when they are absent** — ⚠ it never blocks the work.
+[`.envrc.example`](.envrc.example) names the three variables; copy it to `.envrc` (or `.env`) and
+fill them in there — ⚠ **`.envrc` and `.env` are gitignored and `.envrc.example` is not.**
 `.claude/hooks/slack-doctor.mjs` says which part of the setup is missing.
 
 ---
