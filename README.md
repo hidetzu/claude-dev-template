@@ -63,6 +63,8 @@ CLAUDE.md                        skeleton. ⚠ every FILL IN is a claim only the
     issue-work/                  issue -> plan -> implement -> verify -> review -> PR
     loop-controller/             one issue, one owner approval, ⚠ merge only on fully green CI
     change-review/               is the change inside scope and inside the rules
+    visual-decision/             ⚠ make an owner decision answerable by looking.
+                                 ⚠ contract only — the capture tooling is the project's (§3)
   hooks/                         ask-slack (AskUserQuestion -> Slack -> the answer back), telemetry
   tools/docs-check.mjs           holds the documents to what they say about themselves.
                                  ⚠ --list names the cases, --only= runs one
@@ -107,10 +109,13 @@ can claim about any copy of itself.**
 | Issue and PR templates | yes | ⚠ **`issue-ready` §6 says not to push its nine sections onto outside reporters.** A shipped template would do exactly that |
 | `context-maintainer` | ⚠ **no** | ⚠ **Not a rejection.** It exists in both repositories with the same four sections, ⚠ **so it has the same grounds as the four that are here** — it was simply outside what v0.1 was scoped to. A candidate for v0.2 |
 | konjaku's `css.md`, `components.md`, `domain.md`, `ui-ux-review`, `product-discovery` | yes | One domain only |
+| ⚠ **`visual-decision`** | ⚠ **it is here** | ⚠ **The one exception, and it is recorded as one.** ⚠ **It has run in one domain, not two.** ⚠ **What travelled is the contract — build the current state and two or three candidates, name the recommendation and what it costs, say what was dropped. ⚠ The capture tooling stayed behind**, the same split already made for `verify` |
 | tcpip-stack's `c.md`, `layers.md` | yes | One domain only |
 | A `LICENSE` | ⚠ **no** | ⚠ **Not chosen yet.** ⚠ **Until it is, nobody outside can rely on being allowed to copy this** |
 
 ⚠ **Nothing in this repository claims to have been proven anywhere except in those two projects.**
+⚠ **`visual-decision` is weaker still: it has run in one.** ⚠ **The row above says so, and it is the
+only row that has to.**
 ⚠ **A third project adopting it is a third data point, not a confirmation.**
 
 ---
@@ -123,6 +128,10 @@ can claim about any copy of itself.**
 3. Write `.claude/skills/verify/SKILL.md` against
    [`rules/verification.md`](.claude/rules/verification.md): ⚠ **name the three tiers, the entry
    points, how to run one case, and how to count without running.**
+   ⚠ **Write this project's capture tooling for
+   [`visual-decision`](.claude/skills/visual-decision/SKILL.md) the same way** — ⚠ **the skill
+   names what an artefact has to satisfy and never names a command**, because what an artefact
+   even is differs by domain (a screen, a diagram, a captured trace, a sample of the output).
 4. Add the rule files this domain needs, and list them in
    [`rules/README.md`](.claude/rules/README.md). ⚠ **Each states its grounds.**
 5. ⚠ **Leave `CLAUDE.md` §9 empty.** ⚠ **It fills up with what this project pays for, and
