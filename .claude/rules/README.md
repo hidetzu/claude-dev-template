@@ -60,3 +60,4 @@ incident, and `CLAUDE.md` §9 keeps the row.**
 | Which checks to run, in what order | `.claude/skills/verify/SKILL.md` (⚠ **each project writes its own**) |
 | How to review a change (scope, rules, stale results) | `.claude/skills/change-review/SKILL.md` |
 | Whether an issue can be handed over | `.claude/skills/issue-ready/SKILL.md` |
+| Making an owner decision answerable by looking | [`visual-decision`](../skills/visual-decision/SKILL.md) |

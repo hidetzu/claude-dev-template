@@ -29,6 +29,9 @@ Ask only where **being wrong cannot be walked back**.
 - MUST: ⚠ **Asking stops the work.** Finish everything that does not depend on the answer
   **before** asking.
 - MUST: ⚠ **Record what was asked.** Once decided, put the reason in `docs/adr/`.
+- SHOULD: ⚠ **When the thing being settled is how something looks, hand over the artefacts, not
+  a description of them** ([`visual-decision`](../skills/visual-decision/SKILL.md) owns how).
+  ⚠ **That skill is not restated here, and this line is not restated there.**
 
 ## ⚠ An owner decision outranks your judgement
 
