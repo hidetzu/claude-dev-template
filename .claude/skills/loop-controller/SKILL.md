@@ -8,24 +8,32 @@ description: Carry exactly one ready-for-ai issue through gate, plan, owner appr
 ⚠ **The controller holds no judgement of its own.** It calls, and transitions on the verdict returned.
 
 ```
-PRECHECK -> READY_CHECK -> PLAN -> APPROVAL -> WORK -> PR -> CI -> MERGE -> STOP
-                  ^                             |
-                  '------ back on a NO ---------'
+PRECHECK -> READY_CHECK -> PLAN -> WORK -> PR -> CI -> ⚠ MERGE APPROVAL -> MERGE -> STOP
+                  ^                  |                   ^
+                  '--- back on a NO -'                   '-- ⚠ the one human gate
 ```
+
+⚠ **The human gate is at the merge, not at the start**
+([`owner-decisions.md`](../../rules/owner-decisions.md) § `ready-for-ai` says why).
+⚠ **The number of human gates per issue is one. ⚠ Never let it become zero.**
 
 ⚠ **v1 is not a queue processor.** One issue. ⚠ **Never patrols on its own.**
 
 ## ⚠ Never, under any circumstances
 
 ```
-auto-merge (--auto / merge queue)     apply or remove ready-for-ai
-merge bypassing protection (--admin)  rewrite or split an issue
-pick an issue                         create a new issue
-switch to a different issue           decide the spec or the behaviour
-widen the scope                       skip a check or a review
-push to the default branch            retry without limit
-merge on red or in-progress CI        skip a gate and merge
+auto-merge (--auto / merge queue)     ⚠ merge without the owner approving it
+merge bypassing protection (--admin)  ⚠ remove ready-for-ai
+pick an issue                         rewrite or split an issue
+switch to a different issue           create a new issue
+widen the scope                       decide the spec or the behaviour
+push to the default branch            skip a check or a review
+merge on red or in-progress CI        retry without limit
+skip a gate and merge
 ```
+
+⚠ **`apply ready-for-ai` is not on this list.** ⚠ **`remove` is, and always will be** —
+⚠ **removing one the owner applied overrides the owner.**
 
 ⚠ **Never copy a judgement standard into this file.** The list of checks, the issue criteria —
 each belongs to its own skill (rule: never two implementations of the same question).
@@ -60,7 +68,16 @@ gh issue view <N> --comments
 | What | ⚠ Why stop |
 |---|---|
 | `state` is `CLOSED` | Never touch something already finished |
-| no `ready-for-ai` | ⚠ **This is the entry condition.** ⚠ **Never apply it yourself** |
+| ⚠ **an owner decision on it is unresolved** | ⚠ **Never label past it, and never start it** |
+
+### ⚠ When `ready-for-ai` is absent
+
+⚠ **This is no longer a stop.** ⚠ **It is a gate to run.**
+
+- Run [`issue-ready`](../issue-ready/SKILL.md).
+- On `YES`, apply the label ([`owner-decisions.md`](../../rules/owner-decisions.md) owns when that
+  is allowed — ⚠ **read it, it is not copied here**), then continue.
+- ⚠ **On anything else, stop.** ⚠ **Report the verdict. Implement nothing.**
 
 ### Local state
 
@@ -121,36 +138,44 @@ Review Plan (change-review)
 
 ---
 
-## 4. APPROVAL (⚠ human gate)
+## 4. ⚠ The execution contract (⚠ no gate here — the gate is § 7)
 
-⚠ **Ask with `AskUserQuestion`.** ⚠ Never bury it in prose
-([`owner-decisions.md`](../../rules/owner-decisions.md)).
+⚠ **Report the plan. ⚠ Do not wait on it.**
 
-### ⚠ What approval means (the execution contract)
-
-Once the owner approves, ⚠ **for that one issue only**, the following count as permitted:
+Once `READY_CHECK` returns `YES`, ⚠ **for that one issue only**, the following count as permitted:
 
 ```
 implement / fix / inner verify / final verify / review
 commit / ⚠ push to that branch / open the PR
-⚠ merge once CI is entirely green
 ```
 
-⚠ **Not included**
+⚠ **Not included** — ⚠ **and the first line is the one that matters**
 
 ```
+⚠ MERGE. ⚠ It is a gate, and it is taken every time (§ 7)
 another issue / widening scope / deciding the spec or the behaviour
-applying or removing ready-for-ai / a broad refactor
+⚠ removing ready-for-ai / a broad refactor
 ⚠ auto-merge (--auto / merge queue) / ⚠ merge bypassing protection (--admin)
 ⚠ merge on red or in-progress CI
 ```
 
-⚠ **With merge included, the human enters at exactly one point — the approval at the start.**
-⚠ **Green CI does not mean the spec is right.** ⚠ **The PR remains, so it stays readable afterwards.**
+⚠ **The human enters at exactly one point — the merge.**
+⚠ **Green CI does not mean the spec is right.** ⚠ **That is precisely why the gate is there and
+not on the green tick.** ⚠ **The PR remains, so it stays readable afterwards.**
 
 ⚠ **This is the [`git.md`](../../rules/git.md) exception, made explicit and confined to the
 controller.** ⚠ **Used standalone, every skill still takes permission every time.**
-Nothing is weakened.
+⚠ **Push and PR are covered here. ⚠ Merge is covered nowhere.**
+
+### ⚠ Stop and ask, mid-run, whenever this appears
+
+⚠ **These do not wait for the merge gate.** ⚠ **They stop the run where they are found.**
+
+```
+the scope would have to move (crossing Non-goals)
+what may be claimed would have to change
+anything the "Ask" column of owner-decisions.md covers
+```
 
 ---
 
@@ -200,18 +225,21 @@ confirming it was honoured. ⚠ Operate knowing that.
 ⚠ **Only when all of these hold.**
 
 ```
-[ ] Issue Quality Gate = YES
-[ ] Owner approval = YES
+[ ] Issue Quality Gate = YES              ⚠ re-run, not the label's word for it
 [ ] Final verify = PASS
 [ ] Required review = PASS
 [ ] Unresolved human decisions = 0
 [ ] Round limit not exceeded
 ```
 
+⚠ **`Owner approval` is not on this list.** ⚠ **It moved to § 7, in front of the merge.**
+
 Include `Closes #<N>`, and make it visible that the controller ran it.
 
 ```
 Loop Controller: Quality PASS / Verify PASS / Review PASS / round 2 of 3 / no decisions pending
+⚠ ready-for-ai: applied by the AI on <date> / applied by the owner   ⚠ say which
+⚠ Merge: awaiting owner approval
 ```
 
 ---
@@ -224,11 +252,32 @@ Loop Controller: Quality PASS / Verify PASS / Review PASS / round 2 of 3 / no de
 forbidden: --auto / merge queue / --admin / pushing to the default branch
 ```
 
+### ⚠ MERGE APPROVAL (⚠ the one human gate)
+
+⚠ **Ask with `AskUserQuestion`.** ⚠ **Never bury it in prose**
+([`owner-decisions.md`](../../rules/owner-decisions.md)).
+
+⚠ **Ask only once CI is green and § 6 holds.** ⚠ **Asking earlier spends the owner's attention on
+something that may still fail.**
+
+⚠ **What the question must carry**
+
+```
+what the change does, in one line
+⚠ which tiers ran, and ⚠ which did not (⚠ a silent gap reads as "checked and fine")
+⚠ who applied ready-for-ai, and when
+⚠ anything the run decided that the owner might have decided differently
+```
+
+- MUST: ⚠ **A `NO` is not a failure of the run.** ⚠ **Report and stop.**
+- MUST NOT: ⚠ **Never re-ask after a `NO` by rephrasing it.**
+
 ### ⚠ Merge only when all of these hold
 
 ```
-[ ] the six items in §6
+[ ] the five items in §6
 [ ] CI is entirely green (not one pending)
+[ ] ⚠ the owner approved this merge, in this run
 ```
 
 ⚠ **On a failure, split it apart first** ([`verification.md`](../../rules/verification.md)).
@@ -251,6 +300,9 @@ gh pr merge <PR> --squash --delete-branch
 (that `Closes` took effect).
 
 ⚠ **After merging, stop. Never move on to the next issue.**
+
+⚠ **This holds even though the AI can now open the gate itself.** ⚠ **Being able to open it is
+not permission to walk through it unasked.** ⚠ **v1 is still not a queue processor.**
 
 ### Report (⚠ same shape when it stopped early)
 
@@ -290,8 +342,9 @@ create a branch / change a file / commit / push / open a PR / modify the issue
 ## 9. Stop conditions (⚠ each stops immediately)
 
 ```
-no ready-for-ai              Issue Quality Gate = NO
-issue is CLOSED              an owner decision is unresolved
+Issue Quality Gate = NO      an owner decision is unresolved
+issue is CLOSED              ⚠ a named dependency is still open
+⚠ the owner did not approve the merge
 issue / comments / SPEC / ADR conflict and authority cannot be determined
 it cannot be fixed without leaving scope
 the spec or the behaviour would have to be newly decided

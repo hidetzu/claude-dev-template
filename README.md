@@ -6,14 +6,16 @@
 ⚠ **Everything that only ever worked in one of them was left behind, on purpose** (§3).
 
 ```
-issue-ready  ->  owner decision gate  ->  ready-for-ai  ->  loop-controller
+issue-ready  ->  ready-for-ai (⚠ applied by the AI, on YES)  ->  loop-controller
                                                                 |
               inner verify  ->  final verify  ->  mutation / negative check
                                                                 |
-                                       change-review  ->  PR  ->  CI  ->  owner merge
+                        change-review  ->  PR  ->  CI  ->  ⚠ owner approves the merge
                                                                 |
                                           debt outside scope leaves as its own issue
 ```
+
+⚠ **One human gate per issue, and it is the merge** (§3).
 
 ---
 
@@ -61,7 +63,7 @@ CLAUDE.md                        skeleton. ⚠ every FILL IN is a claim only the
   skills/
     issue-ready/                 can this issue be handed over at all
     issue-work/                  issue -> plan -> implement -> verify -> review -> PR
-    loop-controller/             one issue, one owner approval, ⚠ merge only on fully green CI
+    loop-controller/             one issue, ⚠ one owner approval AT THE MERGE, ⚠ fully green CI
     change-review/               is the change inside scope and inside the rules
     visual-decision/             ⚠ make an owner decision answerable by looking.
                                  ⚠ contract only — the capture tooling is the project's (§3)
@@ -109,14 +111,34 @@ can claim about any copy of itself.**
 | Issue and PR templates | yes | ⚠ **`issue-ready` §6 says not to push its nine sections onto outside reporters.** A shipped template would do exactly that |
 | `context-maintainer` | ⚠ **no** | ⚠ **Not a rejection.** It exists in both repositories with the same four sections, ⚠ **so it has the same grounds as the four that are here** — it was simply outside what v0.1 was scoped to. A candidate for v0.2 |
 | konjaku's `css.md`, `components.md`, `domain.md`, `ui-ux-review`, `product-discovery` | yes | One domain only |
-| ⚠ **`visual-decision`** | ⚠ **it is here** | ⚠ **The one exception, and it is recorded as one.** ⚠ **It has run in one domain, not two.** ⚠ **What travelled is the contract — build the current state and two or three candidates, name the recommendation and what it costs, say what was dropped. ⚠ The capture tooling stayed behind**, the same split already made for `verify` |
+| ⚠ **`visual-decision`** | ⚠ **it is here** | ⚠ **An exception, and it is recorded as one.** ⚠ **It has run in one domain, not two.** ⚠ **What travelled is the contract — build the current state and two or three candidates, name the recommendation and what it costs, say what was dropped. ⚠ The capture tooling stayed behind**, the same split already made for `verify` |
+| ⚠ **the AI applying `ready-for-ai` itself** | ⚠ **it is here** | ⚠ **The second exception, and it is recorded as one.** ⚠ **It has run in one project, not two** (§3-1). ⚠ **What travelled is the contract — the conditions, the re-check before work, and the gate moving to the merge. ⚠ The step that applies and records the label stayed behind**, the same split again |
 | tcpip-stack's `c.md`, `layers.md` | yes | One domain only |
 | A `LICENSE` | ⚠ **no** | ⚠ **Not chosen yet.** ⚠ **Until it is, nobody outside can rely on being allowed to copy this** |
 
 ⚠ **Nothing in this repository claims to have been proven anywhere except in those two projects.**
-⚠ **`visual-decision` is weaker still: it has run in one.** ⚠ **The row above says so, and it is the
-only row that has to.**
-⚠ **A third project adopting it is a third data point, not a confirmation.**
+⚠ **Two rows are weaker still: they have run in one.** ⚠ **The rows above say so, and they are the
+only rows that have to.**
+⚠ **A third project adopting anything here is a third data point, not a confirmation.**
+
+### 3-1. ⚠ The one that came back from a third project
+
+⚠ **`ready-for-ai` used to be the owner's to apply.** ⚠ **That is what §1's two projects ran.**
+
+⚠ **A third project — `hidetzu/kagima`, a web service — asked for it the other way, and the
+template's own §5 says what to do then: ⚠ when a project has to fight the template to do the
+right thing, the template is wrong, and the fix comes here naming the project it broke in.**
+
+⚠ **What is on the record, and what is not:**
+
+| | |
+|---|---|
+| ⚠ **Ran in** | ⚠ **one project.** ⚠ **Not two.** ⚠ **This is below this repository's own bar, and it is stated rather than hidden** |
+| ⚠ **What was observed** | ⚠ **The label was applied by the AI on every issue that reached the gate, and the gate refused the ones it was supposed to refuse** — ⚠ **an undecided issue, an issue whose verification could not be run, and an issue whose named dependency was still open** |
+| ⚠ **What is NOT claimed** | ⚠ **That the owner's effort went down.** ⚠ **That was not measured against a before.** ⚠ **The count of owner applications is a subtraction, not an observation** (`rules/owner-decisions.md`) |
+| ⚠ **What could still be wrong** | ⚠ **One project, one owner, one domain.** ⚠ **A project where merges are frequent and cheap would feel this differently — ⚠ the gate moved onto the merge, and nobody has run it where merges are the busy part** |
+
+⚠ **A second project running this is what would move it out of §3-1.** ⚠ **Adopting it is not that.**
 
 ---
 
