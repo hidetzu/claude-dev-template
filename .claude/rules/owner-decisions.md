@@ -48,12 +48,73 @@ Ask only where **being wrong cannot be walked back**.
 ⚠ **This is not a priority label.** It marks "an AI can carry this to the end without a human
 deciding mid-way".
 
-- MUST: ⚠ **Only a human applies it.** The AI goes as far as producing the verdict
-  (`.claude/skills/issue-ready/SKILL.md`).
-- MUST NOT: ⚠ **Never apply it, and never remove it.**
-- MUST: ⚠ **The label is an entry condition, not a guarantee that it can be implemented.**
-  ⚠ **Bodies and comments change after a label is applied, and labels get applied by mistake** —
-  ⚠ **so re-run the gate every time.**
-- MUST: ⚠ **Even with the label, permission for `git push` and merge is taken every time**
-  ([`git.md`](git.md)). ⚠ **The one exception is the Loop Controller's**, and it is written out
-  in full there.
+⚠ **The AI applies it, under the conditions below.** ⚠ **It never removes it.**
+
+### ⚠ The gate did not get weaker. It moved.
+
+```text
+before   human applies ready-for-ai  ->  human approves the plan  ->  ... -> merge (covered by that approval)
+now      AI applies ready-for-ai     ->  ... -> PR                ->  ⚠ human approves the merge
+```
+
+- MUST: ⚠ **Exactly one human gate exists per issue, and it is the merge.**
+  ⚠ **Never end up with zero.** ⚠ **If you are about to merge without having asked, you have
+  misread this file.**
+- MUST: ⚠ **The merge is where it sits because that is the point that cannot be walked back.**
+  ⚠ **Applying a label can be.** ⚠ **The gate moved from the reversible end to the irreversible
+  one; it was not removed.**
+- MUST: ⚠ **`git push` and opening the PR are covered inside the Loop Controller and nowhere
+  else** ([`git.md`](git.md)). ⚠ **Merge never is.**
+
+### ⚠ When the AI may apply it
+
+- MAY: ⚠ **Apply it only when [`../skills/issue-ready/SKILL.md`](../skills/issue-ready/SKILL.md)
+  returns `Ready for AI: YES`**, ⚠ **and the verdict was posted to the issue first.**
+  ⚠ **The reasoning goes on the issue before the label does** — ⚠ **a label with no verdict behind
+  it is indistinguishable from one applied by mistake.**
+- MUST: ⚠ **Apply it through one step that also records that the AI did it.**
+  ⚠ **Never by hand, and never as a bare label edit.**
+  ⚠ **Post-then-label-then-record as three commands drifts apart on the first busy day** —
+  ⚠ **a rule every call site has to remember is not a rule, it is a hope.**
+  ⚠ **Every project writes that step for itself; ⚠ this file names what it has to do, not how.**
+- MUST: ⚠ **Re-run the gate immediately before work starts, every time**, even on an issue the AI
+  labelled itself. ⚠ **Bodies and comments change after a label is applied.**
+
+### ⚠ When the AI must not apply it
+
+⚠ **Any one of these means no label.** ⚠ **Not "probably fine". No label.**
+
+| # | ⚠ Condition | ⚠ Why |
+|---|---|---|
+| 1 | ⚠ **An owner decision on the issue is unresolved** | ⚠ **The owner has not decided yet** |
+| 2 | ⚠ **A dependency the issue names is still open** | ⚠ **The work can be started and not finished** |
+| 3 | ⚠ **The environment cannot run the verification the issue needs** | ⚠ **Then nobody can show it green** (`issue-ready` clause 10) |
+| 4 | ⚠ **Anything the "Ask" column above covers is unsettled** | ⚠ **Scope, what may be claimed, anything a human reads** |
+| 5 | `issue-ready` returned anything but `YES` | ⚠ **The gate already said no** |
+
+- MUST NOT: ⚠ **Never remove the label.** ⚠ **Applying and removing are not symmetric:**
+  ⚠ **removing one the owner applied overrides the owner.**
+  ⚠ **When an issue should lose it, say so and stop.**
+- MUST: ⚠ **When condition 1 or 4 is what stopped it, mark the issue as needing an owner decision
+  and move to another issue.** ⚠ **Do not stall the whole queue on one owner question.**
+
+### ⚠ Who applied it has to stay answerable
+
+⚠ **Grounds: the question this change has to keep answering is "how often does the owner still
+have to do it".** ⚠ **A number that only ever goes down without being looked at is not evidence
+of autonomy; it is evidence that nobody looked.**
+
+- MUST: ⚠ **Keep a record of the AI's own applications**, ⚠ **and compare it against what the
+  host actually recorded.**
+- MUST: ⚠ **Where the AI acts through the owner's own credentials, the host's actor field cannot
+  separate them.** ⚠ **Using it anyway is dressing a guess as a measurement**
+  ([`evidence.md`](evidence.md)).
+  ⚠ **The owner's count is then a subtraction, ⚠ and it says so wherever it is printed.**
+- MUST NOT: ⚠ **Never score it.** ⚠ **A count of zero is not a result.**
+
+### ⚠ The label is still only an entry condition
+
+- MUST: ⚠ **It is not a guarantee that the issue can be implemented.**
+  ⚠ **Labels get applied by mistake — ⚠ including by the AI.**
+- MUST: ⚠ **The Loop Controller re-runs the gate before touching anything, and stops on `NO`**
+  ([`../skills/loop-controller/SKILL.md`](../skills/loop-controller/SKILL.md)).

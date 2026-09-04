@@ -1,6 +1,6 @@
 ---
 name: issue-ready
-description: Judge whether an issue can be handed to an AI, and shape it into something that can. Use when drafting a new issue, auditing existing ones, or deciding whether ready-for-ai may be applied. Never applies the label.
+description: Judge whether an issue can be handed to an AI, and shape it into something that can. Use when drafting a new issue, auditing existing ones, or before applying ready-for-ai. Applies the label only on YES, and never on the conditions owner-decisions.md forbids.
 ---
 
 # Issue Quality Gate
@@ -13,15 +13,23 @@ draft issue / existing issue
         |
    issue-ready       <- here. decides whether it can be handed over
         |
-   the owner applies the label
+   ⚠ the verdict is posted to the issue, then the label is applied
         |
-   issue-work
+   issue-work / loop-controller  (⚠ which re-runs this gate first)
 ```
+
+⚠ **When the label may be applied, and when it may not, is owned by
+[`owner-decisions.md`](../../rules/owner-decisions.md) § `ready-for-ai`.**
+⚠ **Read it. ⚠ It is not copied here.**
 
 ## ⚠ What this skill never does
 
-- ⚠ **Never applies the `ready-for-ai` label.** The owner does
-  ([`owner-decisions.md`](../../rules/owner-decisions.md)).
+- ⚠ **Never applies the label on anything but `Ready for AI: YES`**, and
+  ⚠ **never on the conditions [`owner-decisions.md`](../../rules/owner-decisions.md) forbids**
+  (an unresolved owner decision, an open dependency, an environment that cannot verify).
+  ⚠ **That file owns the list.**
+- ⚠ **Never removes the label.** ⚠ **Applying and removing are not symmetric** — ⚠ **removing one
+  the owner applied overrides the owner.** ⚠ **Say it should go, and stop.**
 - ⚠ **Never closes, rewrites, or splits an issue.** It proposes.
 - ⚠ **Never fills in a missing spec.** When the issue, `docs/SPEC.md`, `docs/adr/` and the code
   disagree, ⚠ **do not decide which is right** — return `NEEDS-HUMAN-DECISION`.
@@ -122,6 +130,20 @@ what is counted).
 | 9 | ⚠ **It changes what a recorded value means** | ⚠ Goes straight to the rules. A human decides |
 | 10 | ⚠ **The AI given this issue cannot actually run the verification it needs** | ⚠ Then nobody can show it green |
 | 11 | ⚠ **Outcomes are not distinguished** (and this issue is one where they apply) | ⚠ **The AI reports "not there" for "not obtained."** §3 |
+| 12 | ⚠ **A dependency this issue names is still open** | ⚠ **The work can be started and not finished.** ⚠ **See below** |
+
+### ⚠ Clause 12 — dependencies are read, not guessed
+
+⚠ **An issue's dependencies are the ones it names.** ⚠ **Never infer one from a hunch about
+implementation order.**
+
+- MUST: ⚠ **Check the state of each named issue.** ⚠ **Open means clause 12 is hit.**
+- MUST: ⚠ **Say which dependency is open, by `owner/repo#N`.** ⚠ **"Blocked" with no number is
+  not a reason.**
+- MUST NOT: ⚠ **Never treat a merged PR as a closed dependency.** ⚠ **The issue closing is the
+  event that matters**, ⚠ **and `Closes` does not always fire.**
+- ⚠ **A dependency that only becomes visible once its neighbour is built is normal.**
+  ⚠ **Add it when it appears, and say that it was not declared before.**
 
 ### ⚠ Clause 10 asks about the AI, not about CI
 
@@ -151,7 +173,13 @@ Classification: KEEP / REWRITE / SPLIT / CLOSE / NEEDS-HUMAN-DECISION
 Ready for AI: YES / NO
 
 Reason:
-  <which clause it hit. If none, say all 11 were checked>
+  <which clause it hit. If none, say all 12 were checked>
+
+⚠ Dependencies:
+  <each named dependency, by owner/repo#N, with its state. "none named" if there are none>
+
+⚠ Label:
+  <APPLIED / NOT-APPLIED, and which condition in owner-decisions.md stopped it>
 
 ⚠ Outcome distinction:
   <applicable or not. If applicable, which outcomes are written and which are missing>
@@ -169,9 +197,20 @@ Human Decision:
   <⚠ list what a human must decide, without deciding it>
 ```
 
-⚠ **`Ready for AI: YES` still does not apply the label.**
+## 5-1. ⚠ Applying the label
+
 ⚠ **`YES` means "an AI can implement this", not "this should be implemented."**
-The owner decides the latter.
+⚠ **Those are different, and the second one is still not this skill's to answer** — ⚠ **but the
+first one is now acted on** ([`owner-decisions.md`](../../rules/owner-decisions.md)).
+
+- MUST: ⚠ **Post the verdict first, then label**, ⚠ **in one step that also records that the AI
+  did it.** ⚠ **A label with no verdict behind it is indistinguishable from one applied by
+  mistake**, ⚠ **and an unrecorded one cannot be told from the owner's.**
+- MUST: ⚠ **Never apply it as a bare label edit.** ⚠ **That skips the record.**
+- MUST: ⚠ **The step refuses on the conditions `owner-decisions.md` forbids.**
+  ⚠ **A refusal is an answer, not an obstacle** — ⚠ **never work around it.**
+- ⚠ **What that step is, is the project's** (⚠ **same split this template already makes for
+  `verify` and `visual-decision`: the contract travels, the commands do not**).
 
 ---
 
