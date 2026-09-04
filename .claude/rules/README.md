@@ -37,7 +37,7 @@ incident, and `CLAUDE.md` §9 keeps the row.**
 | File | What it holds |
 |---|---|
 | [`evidence.md`](evidence.md) | ⚠ **What may be said to have been observed.** Denominators, counts, outcomes |
-| [`verification.md`](verification.md) | The three tiers, partial runs, `PASS` / `FAIL` / `NOT-VERIFIED` |
+| [`verification.md`](verification.md) | The three tiers, partial runs, `PASS` / `FAIL` / `NOT-VERIFIED`, ⚠ **and that an exercise must not change the world** |
 | [`owner-decisions.md`](owner-decisions.md) | Decide yourself vs. ask, `ready-for-ai` |
 | [`git.md`](git.md) | Commits, permission, forbidden operations, what never goes public |
 

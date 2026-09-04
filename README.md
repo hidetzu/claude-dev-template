@@ -155,3 +155,19 @@ fill them in there — ⚠ **`.envrc` and `.env` are gitignored and `.envrc.exam
   it happened.**
 - ⚠ **When a project has to fight the template to do the right thing, the template is wrong.**
   ⚠ Fix it here, and say which project it broke in.
+
+### ⚠ What that looked like, once
+
+⚠ **`rules/verification.md` § An exercise must not change the world** arrived this way, from
+`hidetzu/kagima`, ⚠ **and it arrived from an accident rather than from a design.**
+
+⚠ **There, a verification run redirected where it recorded, and read that as "this run is a
+rehearsal".** ⚠ **It was not.** ⚠ **The redirect moved the record and nothing else; the run's
+outward calls were real, and it changed two things it should not have** — ⚠ **one of which had
+already been judged out of bounds.**
+
+⚠ **The row for that incident stays in that project** (`CLAUDE.md` §9), ⚠ **with the check it
+left behind.** ⚠ **What reached this repository is the constraint, with its grounds stated in
+general terms** — ⚠ **because an outward call is real whether or not the caller believed it was,
+and that is true before anybody runs anything.**
+⚠ **The accident is why it was written down. ⚠ It is not why it is true.**
