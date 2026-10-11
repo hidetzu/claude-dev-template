@@ -81,7 +81,7 @@ issues that are still correct.**
 
 ### ⚠ Collect the appends under `## Updates`
 
-⚠ **The body is the record of the time it was written.**⚠ **`Updates` is the diff against now.**
+⚠ **The body is the record of the time it was written.** ⚠ **`Updates` is the diff against now.**
 
 ```text
 ## Updates
