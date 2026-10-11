@@ -49,6 +49,32 @@
 - MUST: ⚠ **When something else could be holding the port, the socket, the device or the lock,
   confirm which one is being measured** before believing the result.
 
+## ⚠ An exercise must not change the world
+
+⚠ **Grounds: a run that believes it is a rehearsal, and is not, does real damage while reporting
+nothing unusual.** ⚠ **The belief is the dangerous part** — ⚠ **it is what makes the operator
+reach for something they would otherwise think twice about.**
+
+- MUST: ⚠ **Treat every outward call as real unless something explicitly blocked it.**
+  ⚠ **Not "unless it looked like a test".** ⚠ **Blocked, by something you can point at.**
+- MUST: ⚠ **Never read a flag, a mode, or a redirected output as a promise about side effects.**
+  ⚠ **Redirecting where a run *records* is not redirecting what it *does*.**
+  ⚠ **The two are separate, and the name of the switch will not tell you which one it is.**
+  ⚠ **A "dry run" is only as dry as the code paths that actually check it.**
+- MUST: ⚠ **When a tool can tell it is being exercised, it refuses to change anything outside
+  this process.** ⚠ **Fail closed.** ⚠ **Say which flag means it, in the refusal.**
+- MUST NOT: ⚠ **Never let "it is only a test" widen what a run may touch.**
+  ⚠ **It is the other way round: ⚠ a test may touch less, never more.**
+- SHOULD: ⚠ **Prove the refusal by making the outward call observable and asserting it did not
+  happen** — ⚠ **a stub the run would have reached, and did not.**
+  ⚠ **Reading the source to see that a branch returns early proves the branch, not the run.**
+- MUST: ⚠ **Pair that with a control that reaches the stub.** ⚠ **Otherwise the check passes when
+  the tool fails to start at all** (⚠ **it failed ≠ it failed for the reason intended**).
+
+⚠ **This is the same shape as "am I measuring what I think I am measuring", one step out:**
+⚠ **there, the risk is measuring the wrong thing; ⚠ here, it is changing the wrong thing while
+believing you changed nothing.**
+
 ## Order
 
 1. Fast / inner, while fixing. ⚠ **Stop and go back at the first failure.**
