@@ -105,6 +105,7 @@ implementation calls. ⚠ **Only judge whether it is handled.** If it is not, `N
 | **Changes with no effect** | Written, but nothing changes (⚠ confirm by measuring) |
 | **Fixed as a set** | implementation -> check -> comment -> README -> `docs/SPEC.md` |
 | **Bare issue numbers** | ⚠ Write them with the repository name (a bare number points elsewhere after a migration) |
+| ⚠ **A stale issue body** | ⚠ **A partial fix left the issue body untrue** (⚠ when `Closes` cannot be carried). ⚠ **Look only at the issue this PR touches.** ⚠ **Write it under `## Updates`** ([`owner-decisions.md`](../../rules/owner-decisions.md)) |
 
 ⚠ **Never write "confirmed" for something that was not verified.**
 
