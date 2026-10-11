@@ -157,7 +157,7 @@ and it can differ between a developer's machine and a hosted runner.
 |---|---|
 | ⚠ **What the body calls the present** | ⚠ **It is already fixed** (⚠ confirm in the code, the checks, the PR) |
 | ⚠ **Checkboxes** | ⚠ **A finished item still shows `[ ]`** |
-| ⚠ **References** | ⚠ The issue it points at is closed ／ ⚠ a file or an ADR is gone |
+| ⚠ **References** | ⚠ The issue it points at is closed, ⚠ or a file or an ADR is gone |
 | ⚠ **Measured values** | ⚠ Measured long ago, ⚠ and the number has moved |
 
 ⚠ **When it has drifted, write it under `## Updates`** (⚠ the format lives in
