@@ -56,9 +56,16 @@ git diff <reviewed-at>..HEAD       # <reviewed-at> is the previous return's `Rev
 the fix broke.** ⚠ **Each pass then turns up a little more of what was always there, and the loop
 does not converge.**
 
-- MUST: ⚠ **Never raise again a finding the previous return carried**, ⚠ **unless the delta
-  touched it.**
+- MUST: ⚠ **A finding the previous return carried is carried forward, not raised as new.**
+  ⚠ **It stays in the return, marked `(carried from <SHA>)`, until it has an answer** (§ 6).
+  ⚠ **A carried `Blocking` finding with no answer still blocks.**
+  ⚠ **Not re-read is not resolved.**
+- MUST: ⚠ **A carried finding still open after a fix round is the same finding repeating**
+  (`loop-controller` § 5 stops on it).
 - MUST: ⚠ **When the delta reaches a file the previous review did not read, read that file whole.**
+- MUST: ⚠ **When `<reviewed-at>` is not an ancestor of `HEAD`** (a rebase), ⚠ **or the default
+  branch was merged in since**, ⚠ **the delta is not this change's alone: read the whole change
+  again.**
 
 ---
 
@@ -219,8 +226,12 @@ Human Decision:
 |---|---|
 | **Fixed** | ⚠ **The commit that fixed it** |
 | **Declined** | ⚠ **A reason someone could disagree with.** ⚠ "Not needed" is not a reason |
-| **Pre-existing** | ⚠ **Left as found**, and listed where the owner will read it |
+| **Pre-existing** | ⚠ **Only for a finding the review already marked `Pre-existing`**, with how it was shown. ⚠ **Left as found**, and listed where the owner will read it |
 
 - MUST: ⚠ **`Non-blocking` findings are answered too.** ⚠ **Not blocking is not the same as not
   answered.**
+- MUST: ⚠ **A `Blocking` finding answered `Declined` makes the verdict `HUMAN-DECISION`.**
+  ⚠ **Whoever made the change does not overrule the review on what blocks**; ⚠ **the owner does.**
+- MUST NOT: ⚠ **Whoever made the change never re-labels a finding `Pre-existing`.**
+  ⚠ **That label needs the showing above, and the reviewer gives it.**
 - MUST: ⚠ **The answers go where the owner reads them** — ⚠ **the PR body, when there is one.**

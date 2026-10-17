@@ -254,7 +254,7 @@ every review finding**:
 ## How to revert
 <the one step that undoes it>  ⚠ and what that step does not undo (data written, a message sent)
 ## Findings
-- <class> — Fixed in <commit> / Declined: <reason> / Pre-existing: <file:line>, left as found
+- <class> — Fixed in <commit> / Declined: <reason> / Pre-existing: <file:line>, <how it was shown>, left as found
 ```
 
 ---
