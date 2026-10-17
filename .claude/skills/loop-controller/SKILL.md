@@ -230,6 +230,7 @@ confirming it was honoured. ⚠ Operate knowing that.
 [ ] Required review = PASS
 [ ] Unresolved human decisions = 0
 [ ] Round limit not exceeded
+[ ] ⚠ Every review finding answered        ⚠ Non-blocking and Pre-existing too (change-review § 6)
 ```
 
 ⚠ **`Owner approval` is not on this list.** ⚠ **It moved to § 7, in front of the merge.**
@@ -240,6 +241,13 @@ Include `Closes #<N>`, and make it visible that the controller ran it.
 Loop Controller: Quality PASS / Verify PASS / Review PASS / round 2 of 3 / no decisions pending
 ⚠ ready-for-ai: applied by the AI on <date> / applied by the owner   ⚠ say which
 ⚠ Merge: awaiting owner approval
+```
+
+⚠ **And the answer to every review finding**, in the PR body:
+
+```
+## Findings
+- <class> — Fixed in <commit> / Declined: <reason> / Pre-existing: <file:line>, left as found
 ```
 
 ---
@@ -275,7 +283,7 @@ what the change does, in one line
 ### ⚠ Merge only when all of these hold
 
 ```
-[ ] the five items in §6
+[ ] every item in §6
 [ ] CI is entirely green (not one pending)
 [ ] ⚠ the owner approved this merge, in this run
 ```

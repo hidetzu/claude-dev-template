@@ -207,3 +207,20 @@ Human Decision:
   ⚠ **Grounds: a finding raised one instance at a time gets fixed one instance at a time, ⚠ and
   the next round finds the next instance.**
 - MUST: ⚠ **When the instances could not all be looked for, say where the search stopped.**
+
+### ⚠ Every finding gets an answer
+
+⚠ **Grounds: a finding dropped without a word is indistinguishable from one never raised** —
+⚠ **the same hole as a silent rejection** ([`evidence.md`](../../rules/evidence.md)).
+
+⚠ **The reviewer raises it. ⚠ Whoever made the change answers it**, with exactly one of:
+
+| Answer | ⚠ What it carries |
+|---|---|
+| **Fixed** | ⚠ **The commit that fixed it** |
+| **Declined** | ⚠ **A reason someone could disagree with.** ⚠ "Not needed" is not a reason |
+| **Pre-existing** | ⚠ **Left as found**, and listed where the owner will read it |
+
+- MUST: ⚠ **`Non-blocking` findings are answered too.** ⚠ **Not blocking is not the same as not
+  answered.**
+- MUST: ⚠ **The answers go where the owner reads them** — ⚠ **the PR body, when there is one.**
