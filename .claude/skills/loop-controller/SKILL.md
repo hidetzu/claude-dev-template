@@ -272,6 +272,7 @@ something that may still fail.**
 
 ```
 what the change does, in one line
+⚠ the head SHA being approved (⚠ the permission covers this commit only — git.md)
 ⚠ which tiers ran, and ⚠ which did not (⚠ a silent gap reads as "checked and fine")
 ⚠ who applied ready-for-ai, and when
 ⚠ anything the run decided that the owner might have decided differently
@@ -286,6 +287,7 @@ what the change does, in one line
 [ ] every item in §6
 [ ] CI is entirely green (not one pending)
 [ ] ⚠ the owner approved this merge, in this run
+[ ] ⚠ the PR head is still the SHA the owner approved   ⚠ a new commit means ask again
 ```
 
 ⚠ **On a failure, split it apart first** ([`verification.md`](../../rules/verification.md)).
@@ -301,8 +303,11 @@ what the change does, in one line
 ### merge
 
 ```bash
-gh pr merge <PR> --squash --delete-branch
+gh pr merge <PR> --squash --delete-branch --match-head-commit <approved SHA>
 ```
+
+⚠ **`--match-head-commit` is what makes the SHA a wall, not a note**: ⚠ **the host refuses the
+merge if the head moved after the owner was asked.**
 
 ⚠ Then re-fetch the default branch and ⚠ **confirm the issue actually closed**
 (that `Closes` took effect).
