@@ -16,6 +16,24 @@ What this looks at is **whether the change itself sits inside what was asked and
 
 ---
 
+## 0. ⚠ Read it in a fresh context
+
+⚠ **The context that wrote the change does not review it.**
+⚠ **Run this skill in a context that has not seen the implementation** — a subagent, given what
+an outside reader would have, ⚠ **and not the plan, the reasoning, or the conversation that
+produced the change.**
+
+⚠ **Grounds: a check that agrees only with itself has proved nothing**
+([`verification.md`](../../rules/verification.md)). ⚠ **The context that wrote it reads what it
+meant, not what it wrote.**
+
+- MUST: ⚠ **Hand over the issue (body and comments) and the branch, and nothing else.**
+  ⚠ **Never a summary of the change** — ⚠ the reviewer reads `git diff` itself (above).
+- MUST: ⚠ **When a fresh context cannot be had, say so in the return** (`Reviewed in`, § 6).
+  ⚠ **A silent gap reads as "checked and fine".**
+
+---
+
 ## 1. What to read
 
 ```bash
@@ -115,6 +133,9 @@ implementation calls. ⚠ **Only judge whether it is handled.** If it is not, `N
 
 ```
 Verdict: PASS / NEEDS-FIX / HUMAN-DECISION
+
+Reviewed in:
+  fresh context / ⚠ same context (<why a fresh one could not be had>)
 
 Scope:
   N files changed / M reasons        ⚠ only what was actually read

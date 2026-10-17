@@ -83,7 +83,7 @@ Two obligations belong to this stage:
 
 ⚠ **What to look at is in [`change-review`](../change-review/SKILL.md).** ⚠ Not here.
 
-`change-review` holds: scope (AC, Out of Scope, one PR one reason) / the rules /
+`change-review` holds: ⚠ who reads it (a fresh context) / scope (AC, Out of Scope, one PR one reason) / the rules /
 ⚠ **stale results and ordering** / tidy-up (dead code, ⚠ stale comments) /
 `PASS` `NEEDS-FIX` `HUMAN-DECISION`.
 

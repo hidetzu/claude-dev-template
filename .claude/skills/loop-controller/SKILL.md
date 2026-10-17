@@ -188,7 +188,7 @@ inner verify (the fast tier)
    | PASS
 final verify (the final gate)
    | PASS
-review (change-review)
+review (change-review, ⚠ in a fresh context — its § 0)
    | PASS
 PR
 ```
