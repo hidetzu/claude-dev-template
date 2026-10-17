@@ -4,6 +4,7 @@
 
 ⚠ **This repository holds only the part that reproduced in two unrelated domains.**
 ⚠ **Everything that only ever worked in one of them was left behind, on purpose** (§3).
+⚠ **Where something below that bar is here anyway, §3 names it as an exception.**
 
 ```
 issue-ready  ->  ready-for-ai (⚠ applied by the AI, on YES)  ->  loop-controller
@@ -113,7 +114,7 @@ can claim about any copy of itself.**
 | konjaku's `css.md`, `components.md`, `domain.md`, `ui-ux-review`, `product-discovery` | yes | One domain only |
 | ⚠ **`visual-decision`** | ⚠ **it is here** | ⚠ **An exception, and it is recorded as one.** ⚠ **It has run in one domain, not two.** ⚠ **What travelled is the contract — build the current state and two or three candidates, name the recommendation and what it costs, say what was dropped. ⚠ The capture tooling stayed behind**, the same split already made for `verify` |
 | ⚠ **the AI applying `ready-for-ai` itself** | ⚠ **it is here** | ⚠ **The second exception, and it is recorded as one.** ⚠ **It has run in one project, not two** (§3-1). ⚠ **What travelled is the contract — the conditions, the re-check before work, and the gate moving to the merge. ⚠ The step that applies and records the label stayed behind**, the same split again |
-| ⚠ **the review-convergence clauses** — `change-review` § 0 (a fresh context), § 1 (re-review the delta), § 6 (`Pre-existing`, the class not the instance, every finding answered); `loop-controller` § 6 (Testing / Risk / How to revert / Findings) and § 7 (the approved SHA); `git.md` (merge permission covers one commit) | ⚠ **it is here** | ⚠ **An exception, and the weakest: it has run in no project.** ⚠ **It came from outside** — an external write-up of how one team reviews its own PRs ([claude.dev/blog/solving-code-review-at-anthropic](https://claude.dev/blog/solving-code-review-at-anthropic/)). ⚠ **What travelled is the grounds, each stated in general terms where the clause is.** ⚠ **The write-up's numbers are that team's, on that team's PRs, ⚠ and none of them is claimed here.** ⚠ **The owner chose, on 2026-10-18, to admit it as an exception rather than hold it as a v0.2 candidate** |
+| ⚠ **the review-convergence clauses** — `change-review` § 0 (a fresh context), § 1 (re-review the delta), § 6 (`Pre-existing`, the class not the instance, every finding answered); `loop-controller` § 6 (Testing / Risk / How to revert / Findings) and § 7 (the approved SHA); `git.md` (merge permission covers one commit) | ⚠ **it is here** | ⚠ **An exception, and the weakest: it has run in no project.** ⚠ **It came from outside** — an external write-up of how one team reviews its own PRs ([claude.dev/blog/solving-code-review-at-anthropic](https://claude.dev/blog/solving-code-review-at-anthropic/)). ⚠ **What travelled is the grounds, each stated in general terms where the clause is.** ⚠ **The write-up's numbers are that team's, on that team's PRs, ⚠ and none of them is claimed here.** ⚠ **The owner chose, on 2026-10-18, to admit it as an exception rather than hold it as a v0.2 candidate**, ⚠ **and confirmed that a `Blocking` finding answered `Declined` goes to the owner (`HUMAN-DECISION`) rather than closing on its reason** |
 | tcpip-stack's `c.md`, `layers.md` | yes | One domain only |
 | A `LICENSE` | ⚠ **no** | ⚠ **Not chosen yet.** ⚠ **Until it is, nobody outside can rely on being allowed to copy this** |
 
@@ -174,6 +175,8 @@ fill them in there — ⚠ **`.envrc` and `.env` are gitignored and `.envrc.exam
 ⚠ **This repository is downstream of two working projects, and it stays downstream.**
 
 - ⚠ **A rule earns its place here by holding in both**, ⚠ **never by sounding general.**
+  ⚠ **An owner may admit one below that bar; ⚠ it then goes into §3 as an exception, saying how
+  far below.**
 - ⚠ **A pitfall belongs to the repository that paid for it** (`CLAUDE.md` §9).
   ⚠ **It reaches here only as a constraint with its grounds named**, ⚠ **and the row stays where
   it happened.**
