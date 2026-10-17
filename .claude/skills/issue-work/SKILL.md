@@ -89,6 +89,8 @@ Two obligations belong to this stage:
 
 ⚠ **Reading a summary produces no findings.** Read the diff.
 
+⚠ **"Self" means before it leaves, not by the context that wrote it** (`change-review` § 0).
+
 ## 8. Commit
 
 ⚠ **Owned by [`git.md`](../../rules/git.md)** — Conventional Commits, one reason one commit,
@@ -99,6 +101,8 @@ never the default branch, why and the numbers in the body. ⚠ Not here.
 - ⚠ **Take permission for `git push` every time** ([`git.md`](../../rules/git.md)).
   ⚠ **Permission granted before does not carry forward**
 - Include `Closes #<N>`
+- ⚠ **The body carries what [`loop-controller`](../loop-controller/SKILL.md) § 6 names** —
+  Testing, Risk, How to revert, and the answer to every review finding. ⚠ Not restated here
 - ⚠ **Note which checks did not run on this PR**, and watch the run on the default branch after merge
 
 ## 10. Report

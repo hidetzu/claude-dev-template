@@ -244,7 +244,10 @@ Loop Controller: Quality PASS / Verify PASS / Review PASS / round 2 of 3 / no de
 ```
 
 ⚠ **The PR body also carries what the owner needs to judge the merge**, ⚠ **and the answer to
-every review finding**:
+every review finding**.
+⚠ **Grounds: the merge is the gate because it is the point that cannot be walked back**
+([`owner-decisions.md`](../../rules/owner-decisions.md)). ⚠ **An owner not shown how far it can
+be walked back, or what would be left behind, is judging the one thing the gate is for blind.**
 
 ```
 ## Testing
@@ -279,7 +282,7 @@ something that may still fail.**
 
 ```
 what the change does, in one line
-⚠ the head SHA being approved (⚠ the permission covers this commit only — git.md)
+⚠ the head SHA being approved (git.md)
 ⚠ which tiers ran, and ⚠ which did not (⚠ a silent gap reads as "checked and fine")
 ⚠ how to revert it, ⚠ and what reverting does not undo
 ⚠ who applied ready-for-ai, and when
@@ -295,7 +298,7 @@ what the change does, in one line
 [ ] every item in §6
 [ ] CI is entirely green (not one pending)
 [ ] ⚠ the owner approved this merge, in this run
-[ ] ⚠ the PR head is still the SHA the owner approved   ⚠ a new commit means ask again
+[ ] ⚠ the PR head is still the SHA the owner approved
 ```
 
 ⚠ **On a failure, split it apart first** ([`verification.md`](../../rules/verification.md)).
