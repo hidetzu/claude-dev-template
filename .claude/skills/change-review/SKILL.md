@@ -44,6 +44,22 @@ git log --oneline <default>..HEAD  # is it split by reason
 
 ⚠ **Never judge from `--stat` alone.** Read the contents.
 
+### ⚠ A re-review reads what moved since the last one
+
+⚠ **The first review reads the whole change.** ⚠ **A re-review after `NEEDS-FIX` reads the delta.**
+
+```bash
+git diff <reviewed-at>..HEAD       # <reviewed-at> is the previous return's `Reviewed at`
+```
+
+⚠ **Grounds: re-reading the whole change finds what the last pass happened to miss, ⚠ not what
+the fix broke.** ⚠ **Each pass then turns up a little more of what was always there, and the loop
+does not converge.**
+
+- MUST: ⚠ **Never raise again a finding the previous return carried**, ⚠ **unless the delta
+  touched it.**
+- MUST: ⚠ **When the delta reaches a file the previous review did not read, read that file whole.**
+
 ---
 
 ## 2. Scope
@@ -134,8 +150,12 @@ implementation calls. ⚠ **Only judge whether it is handled.** If it is not, `N
 ```
 Verdict: PASS / NEEDS-FIX / HUMAN-DECISION
 
+Reviewed at:
+  <head SHA>                         ⚠ the commit this verdict is about
 Reviewed in:
   fresh context / ⚠ same context (<why a fresh one could not be had>)
+Read:
+  whole change / ⚠ delta since <SHA>
 
 Scope:
   N files changed / M reasons        ⚠ only what was actually read
@@ -144,10 +164,14 @@ Acceptance Criteria:
   1. <AC>  -> <what confirmed it>  OK / NO / ⚠ unverified
 
 Blocking:
-  - <breaks a rule / outside scope / an AC unmet / ⚠ a stale result can overwrite current state>
+  - <the class> — <every instance, file:line>
+    <breaks a rule / outside scope / an AC unmet / ⚠ a stale result can overwrite current state>
 
 Non-blocking:
-  - <worth fixing, not worth blocking on>
+  - <the class> — <every instance>   worth fixing, not worth blocking on
+
+Pre-existing:
+  - <the class> — <file:line> — <how it was shown to predate this change>   ⚠ never blocks
 
 Human Decision:
   - <spec, behaviour, meaning of a recorded value>
@@ -161,3 +185,25 @@ Human Decision:
 
 ⚠ **One blocking item means it is not a PASS.**
 ⚠ **One "unverified" AC means it is not a PASS** (either `NEEDS-FIX`, or back to verifying to measure).
+
+### ⚠ Every finding says whether this change introduced it
+
+⚠ **Grounds: a defect the change did not introduce cannot be fixed inside its scope.**
+⚠ **Blaming the change for it either pushes the fix past `Non-goals` or spends a round on it,
+⚠ and the next pass finds the next old one.**
+
+- MUST: ⚠ **`Pre-existing` only when shown** — ⚠ **the same code is on the default branch**
+  (`git show <default>:<path>`, `git blame`). ⚠ **Say how it was shown.**
+- MUST: ⚠ **Not shown is `Blocking` or `Non-blocking`, never `Pre-existing`.**
+  ⚠ **Failing to show it predates the change is not showing that it does**
+  ([`evidence.md`](../../rules/evidence.md)).
+- MUST: ⚠ **A pre-existing defect that this change makes reachable, or worse, is this change's.**
+- MUST NOT: ⚠ **`Pre-existing` never makes a `NEEDS-FIX`.** ⚠ **It is listed so it is not lost**;
+  ⚠ **whether it becomes its own issue is not this skill's to decide.**
+
+### ⚠ Name the class, not the instance
+
+- MUST: ⚠ **A finding names the class of defect, and every instance of it in what was read.**
+  ⚠ **Grounds: a finding raised one instance at a time gets fixed one instance at a time, ⚠ and
+  the next round finds the next instance.**
+- MUST: ⚠ **When the instances could not all be looked for, say where the search stopped.**

@@ -201,7 +201,7 @@ PR
 | Verify `FAIL` | ⚠ **If fixable within scope**, back to implement. **Counts as one round** |
 | Verify `NOT-VERIFIED` | ⚠ **Stop by default.** Only when an external cause makes a retry sensible, **retry once under the same conditions**. Then stop. ⚠ **Never edit code to make it go away** |
 | Review `PASS` | Continue |
-| Review `NEEDS-FIX` | ⚠ **Only the in-scope findings**, then back to implement. **Counts as one round** |
+| Review `NEEDS-FIX` | ⚠ **Only the in-scope findings**, then back to implement. **Counts as one round.** ⚠ **The re-review reads the delta** (`change-review` § 1) |
 | Review `HUMAN-DECISION` | ⚠ **Stop immediately.** The controller does not decide |
 
 ⚠ **After a fix, run inner -> final -> review again.** Never skip.
