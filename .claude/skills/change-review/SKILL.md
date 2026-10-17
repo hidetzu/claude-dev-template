@@ -27,8 +27,10 @@ produced the change.**
 ([`verification.md`](../../rules/verification.md)). ⚠ **The context that wrote it reads what it
 meant, not what it wrote.**
 
-- MUST: ⚠ **Hand over the issue (body and comments) and the branch, and nothing else.**
-  ⚠ **Never a summary of the change** — ⚠ the reviewer reads `git diff` itself (above).
+- MUST: ⚠ **Hand over the issue (body and comments) and the branch** — ⚠ **and, on a re-review,
+  the previous return verbatim and the answer to each of its findings** (§ 1, § 6).
+  ⚠ **Nothing else.** ⚠ **Never a summary of the change** — ⚠ the reviewer reads `git diff`
+  itself (above).
 - MUST: ⚠ **When a fresh context cannot be had, say so in the return** (`Reviewed in`, § 6).
   ⚠ **A silent gap reads as "checked and fine".**
 
@@ -57,9 +59,10 @@ the fix broke.** ⚠ **Each pass then turns up a little more of what was always 
 does not converge.**
 
 - MUST: ⚠ **A finding the previous return carried is carried forward, not raised as new.**
-  ⚠ **It stays in the return, marked `(carried from <SHA>)`, until it has an answer** (§ 6).
-  ⚠ **A carried `Blocking` finding with no answer still blocks.**
-  ⚠ **Not re-read is not resolved.**
+  ⚠ **It stays in the return, marked `(carried from <SHA>)`, until it is closed.**
+  ⚠ **`Fixed` closes it only when the delta shows the fix**; ⚠ **an answer claiming a fix is not
+  the fix.** ⚠ **`Declined` and `Pre-existing` close it on the answer** (§ 6).
+  ⚠ **A carried `Blocking` finding that is not closed still blocks.**
 - MUST: ⚠ **A carried finding still open after a fix round is the same finding repeating**
   (`loop-controller` § 5 stops on it).
 - MUST: ⚠ **When the delta reaches a file the previous review did not read, read that file whole.**
@@ -181,14 +184,14 @@ Pre-existing:
   - <the class> — <file:line> — <how it was shown to predate this change>   ⚠ never blocks
 
 Human Decision:
-  - <spec, behaviour, meaning of a recorded value>
+  - <spec, behaviour, meaning of a recorded value / ⚠ a Blocking finding answered Declined>
 ```
 
 | Verdict | When |
 |---|---|
 | **PASS** | Every AC met, nothing outside scope, no rule touched |
 | **NEEDS-FIX** | ⚠ **Any AC unmet** / outside scope / a rule touched / ⚠ **a stale result can overwrite** / tidy-up outstanding |
-| **HUMAN-DECISION** | ⚠ **The spec, the behaviour, or the meaning of a value** must be settled first. ⚠ **Never settle it yourself** |
+| **HUMAN-DECISION** | ⚠ **The spec, the behaviour, or the meaning of a value** must be settled first, ⚠ **or a `Blocking` finding was answered `Declined`**. ⚠ **Never settle it yourself** |
 
 ⚠ **One blocking item means it is not a PASS.**
 ⚠ **One "unverified" AC means it is not a PASS** (either `NEEDS-FIX`, or back to verifying to measure).

@@ -89,8 +89,6 @@ Two obligations belong to this stage:
 
 ⚠ **Reading a summary produces no findings.** Read the diff.
 
-⚠ **"Self" means before it leaves, not by the context that wrote it** (`change-review` § 0).
-
 ## 8. Commit
 
 ⚠ **Owned by [`git.md`](../../rules/git.md)** — Conventional Commits, one reason one commit,
