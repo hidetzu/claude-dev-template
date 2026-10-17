@@ -243,9 +243,16 @@ Loop Controller: Quality PASS / Verify PASS / Review PASS / round 2 of 3 / no de
 ⚠ Merge: awaiting owner approval
 ```
 
-⚠ **And the answer to every review finding**, in the PR body:
+⚠ **The PR body also carries what the owner needs to judge the merge**, ⚠ **and the answer to
+every review finding**:
 
 ```
+## Testing
+<what ran, which tier>  ⚠ and what did not
+## Risk
+<what this could break>  ⚠ and what the checks above would not catch
+## How to revert
+<the one step that undoes it>  ⚠ and what that step does not undo (data written, a message sent)
 ## Findings
 - <class> — Fixed in <commit> / Declined: <reason> / Pre-existing: <file:line>, left as found
 ```
@@ -274,6 +281,7 @@ something that may still fail.**
 what the change does, in one line
 ⚠ the head SHA being approved (⚠ the permission covers this commit only — git.md)
 ⚠ which tiers ran, and ⚠ which did not (⚠ a silent gap reads as "checked and fine")
+⚠ how to revert it, ⚠ and what reverting does not undo
 ⚠ who applied ready-for-ai, and when
 ⚠ anything the run decided that the owner might have decided differently
 ```
