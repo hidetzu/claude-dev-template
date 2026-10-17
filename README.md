@@ -113,12 +113,14 @@ can claim about any copy of itself.**
 | konjaku's `css.md`, `components.md`, `domain.md`, `ui-ux-review`, `product-discovery` | yes | One domain only |
 | ⚠ **`visual-decision`** | ⚠ **it is here** | ⚠ **An exception, and it is recorded as one.** ⚠ **It has run in one domain, not two.** ⚠ **What travelled is the contract — build the current state and two or three candidates, name the recommendation and what it costs, say what was dropped. ⚠ The capture tooling stayed behind**, the same split already made for `verify` |
 | ⚠ **the AI applying `ready-for-ai` itself** | ⚠ **it is here** | ⚠ **The second exception, and it is recorded as one.** ⚠ **It has run in one project, not two** (§3-1). ⚠ **What travelled is the contract — the conditions, the re-check before work, and the gate moving to the merge. ⚠ The step that applies and records the label stayed behind**, the same split again |
+| ⚠ **the review-convergence clauses** — `change-review` § 0 (a fresh context), § 1 (re-review the delta), § 6 (`Pre-existing`, the class not the instance, every finding answered); `loop-controller` § 6 (Testing / Risk / How to revert / Findings) and § 7 (the approved SHA); `git.md` (merge permission covers one commit) | ⚠ **it is here** | ⚠ **The third exception, and the weakest: it has run in no project.** ⚠ **It came from outside** — an external write-up of how one team reviews its own PRs ([claude.dev/blog/solving-code-review-at-anthropic](https://claude.dev/blog/solving-code-review-at-anthropic/)). ⚠ **What travelled is the grounds, each stated in general terms where the clause is.** ⚠ **The write-up's numbers are that team's, on that team's PRs, ⚠ and none of them is claimed here.** ⚠ **The owner chose, on 2026-10-18, to admit it as an exception rather than hold it as a v0.2 candidate** |
 | tcpip-stack's `c.md`, `layers.md` | yes | One domain only |
 | A `LICENSE` | ⚠ **no** | ⚠ **Not chosen yet.** ⚠ **Until it is, nobody outside can rely on being allowed to copy this** |
 
 ⚠ **Nothing in this repository claims to have been proven anywhere except in those two projects.**
-⚠ **Two rows are weaker still: they have run in one.** ⚠ **The rows above say so, and they are the
-only rows that have to.**
+⚠ **Two rows are weaker still: they have run in one.** ⚠ **One is weaker again: it has run in none,
+and it names where it came from instead.** ⚠ **The rows above say so, and they are the only rows
+that have to.**
 ⚠ **A third project adopting anything here is a third data point, not a confirmation.**
 
 ### 3-1. ⚠ The one that came back from a third project
