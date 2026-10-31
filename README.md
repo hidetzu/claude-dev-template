@@ -76,6 +76,9 @@ CLAUDE.md                        skeleton. ⚠ every FILL IN is a claim only the
 docs/
   SPEC.md                        skeleton. what may be claimed
   adr/README.md                  what belongs in an ADR and what does not
+variants/
+  spec-roadmap/                  ⚠ an exception (§3). Roadmap -> Theme -> Steering, its doc/
+                                 skeletons and four commands. ⚠ not wired into the rest
 ```
 
 ⚠ **`.claude/telemetry/` never enters git** — see `.gitignore` and `.claude/telemetry-dir.mjs`.
@@ -115,6 +118,7 @@ can claim about any copy of itself.**
 | ⚠ **`visual-decision`** | ⚠ **it is here** | ⚠ **An exception, and it is recorded as one.** ⚠ **It has run in one domain, not two.** ⚠ **What travelled is the contract — build the current state and two or three candidates, name the recommendation and what it costs, say what was dropped. ⚠ The capture tooling stayed behind**, the same split already made for `verify` |
 | ⚠ **the AI applying `ready-for-ai` itself** | ⚠ **it is here** | ⚠ **The second exception, and it is recorded as one.** ⚠ **It has run in one project, not two** (§3-1). ⚠ **What travelled is the contract — the conditions, the re-check before work, and the gate moving to the merge. ⚠ The step that applies and records the label stayed behind**, the same split again |
 | ⚠ **the review-convergence clauses** — `change-review` § 0 (a fresh context), § 1 (re-review the delta), § 6 (`Pre-existing`, the class not the instance, every finding answered); `loop-controller` § 6 (Testing / Risk / How to revert / Findings) and § 7 (the approved SHA); `git.md` (merge permission covers one commit) | ⚠ **it is here** | ⚠ **An exception, and the weakest: it has run in no project.** ⚠ **It came from outside** — an external write-up of how one team reviews its own PRs ([claude.dev/blog/solving-code-review-at-anthropic](https://claude.dev/blog/solving-code-review-at-anthropic/)). ⚠ **What travelled is the grounds, each stated in general terms where the clause is.** ⚠ **The write-up's numbers are that team's, on that team's PRs, ⚠ and none of them is claimed here.** ⚠ **The owner chose, on 2026-10-18, to admit it as an exception rather than hold it as a v0.2 candidate**, ⚠ **and confirmed that a `Blocking` finding answered `Declined` goes to the owner (`HUMAN-DECISION`) rather than closing on its reason** |
+| ⚠ **`variants/spec-roadmap/`** | ⚠ **it is here** | ⚠ **An exception, and it is recorded as one.** ⚠ **It has run in one project, not two, and that project is not public**, ⚠ **so nothing it produced can be cited here.** ⚠ **What travelled is the shape — the document set, Roadmap → Theme → Steering, and four commands (`new-theme`, `spec-review`, `impl-review`, `doc-sync`). ⚠ That project's own documents stayed behind**, ⚠ **and the two that came are skeletons.** ⚠ **It is kept apart under `variants/` because nothing at the top level reads `doc/` or `.steering/`**, ⚠ **so adopting the template does not adopt it.** ⚠ **The owner chose, on 2026-11-01, to admit it as an exception** |
 | tcpip-stack's `c.md`, `layers.md` | yes | One domain only |
 | A `LICENSE` | ⚠ **no** | ⚠ **Not chosen yet.** ⚠ **Until it is, nobody outside can rely on being allowed to copy this** |
 
